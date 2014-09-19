@@ -1,7 +1,10 @@
 /*
  * !!!!!!!!!!! Have To Do !!!!!!!!!!!!!
  * 
- * 타이틀과 StatusBar 등등 고려해서 높이 조정 해야함
+ * 1. 전성선배의 경로 안나옴
+ * 2. 동환이의 좌표 넘겨주기 연동
+ * 3. 화면 줌/아웃/회전 적용
+ * 4. UI 확장
  * 
  */
 
@@ -13,10 +16,10 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.Display;
-import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.SurfaceHolder;
 import android.view.WindowManager;
@@ -44,8 +47,10 @@ public class MapMove extends SurfaceView implements Callback {
 	private long counter = 0;			// 전체 반복 횟수
 	private boolean canRun = true;		// 스레드 실행용 플래그
 	
-	//Paint paint;
-	//MapPath mp;
+	Paint paint;
+	MapPath mp;
+	
+	tempCoordinate tc;
 	
 	public MapMove(Context context, AttributeSet attrs) {	// 생성자
 		super(context, attrs);
@@ -93,7 +98,6 @@ public class MapMove extends SurfaceView implements Callback {
 			cx = width / 2;		// 화면 폭의 중간
 			cy = height / 2;	// 화면 높이의 중간
 			
-			
 			// 배경과 사용자 이미지 읽어옴
 			pink = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.smash_room);
 			pink = Bitmap.createScaledBitmap(pink, width, height, true);		// 이미지 확대
@@ -112,8 +116,9 @@ public class MapMove extends SurfaceView implements Callback {
 			y1 = pink.getHeight() - height;
 			
 			// Viewport를 1회에 이동시킬 거리
-			sx1 = 0;
-			sy1 = 0;
+			tc = new tempCoordinate();
+			sx1 = tc.coordinateX();
+			sy1 = tc.coordinateY();
 		}
 		
 		public void run() {		// 실제로 반복되는 부분
@@ -123,9 +128,9 @@ public class MapMove extends SurfaceView implements Callback {
 				canvas = mHolder.lockCanvas();					// canvas를 잠그고 버퍼 할당
 				try {
 					synchronized (mHolder) {					// 동기화 유지
-						//paint = new Paint(256);
-						//mp = new MapPath();
-						//Drawing(canvas);
+						paint = new Paint(256);
+						mp = new MapPath();
+						Drawing(canvas);
 						ScrollViewport();						// 배경화면 스크롤
 						//src.set(x1, y1, x1+width, y1+height);	// Viewport 설정
 						canvas.drawBitmap(pink, src, dst, null);	// 배경화면 그리기
@@ -156,10 +161,10 @@ public class MapMove extends SurfaceView implements Callback {
 			src.set(x1, y1, x1+width, y1+height);	// Viewport 설정
 		}
 	}
-	/*
+	
 	public void Drawing(Canvas c){
 		for(int a=0;a<=mp.a;a++){
 			c.drawRect(mp.yy[a], mp.xx[a], mp.yy[a]+5, mp.xx[a]+5, paint);
 		}
-	}*/	
+	}	
 }
