@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">UIExample2</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    
+    <!-- 메인화면 -->
+    <string name="main_btn_1">업데이트</string>
+    <string name="main_btn_2">지도보기</string>
+    <string name="main_btn_3">두둠칫</string>
+    <string name="exit">EXIT</string>
+   
+   
+</resources>
