@@ -60,26 +60,25 @@ public class UserMove extends Activity {
 		}
     	
 		public void onDraw(Canvas canvas) {
-			x += dx;			// 가로 방향으로 이동
-			y += dy;			// 세로 방향으로 이동
+			//x += dx;			// 가로 방향으로 이동
+			//y += dy;			// 세로 방향으로 이동
 			
 			if(x < cw){			// 왼쪽 끝이면 방향을 바꿈
 				x = cw;
-				dx = -dx;		
+				//dx = -dx;		
 			}
 			if(x > width-cw){	// 오른쪽 끝이면 방향을 바꿈
 				x = width - cw;
-				dx = -dx;
+				//dx = -dx;
 			}
 			if(y < ch){			// 위 끝이면 방향을 바꿈
 				y = ch;
-				dy = -dy;
+				//dy = -dy;
 			}
 			if(y > height-ch){	// 아래 끝이면 방향을 바꿈
 				y = height-ch;
-				dy = -dy;
+				//dy = -dy;
 			}
-			
 			canvas.drawBitmap(user, x-cw, y-ch, null);	// 사용자 이미지 붙이기
 		}
 		
