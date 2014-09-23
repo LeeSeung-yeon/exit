@@ -1,5 +1,7 @@
 package com.example.uiexample2;
 
+import android.widget.Toast;
+
 public class MapPath {
 	public Map r;
 	public boolean[][] wall;
@@ -8,19 +10,28 @@ public class MapPath {
 	public int[] xx;
 	public int[] yy;
 
+	int ST;
+	int EN;
+	int X, Y, K;
+
+	int h, g; 
+
+	int[][] complete;
+
+	public int counter;
+
 	public MapPath(){
 
 		r = new Map();
 		wall = r.newWall();
+		counter=0;
 
 		int ST = 8000;
 		int EN = 0;
-		int X = 50, Y = 150, K=21;
+		int X = 20, Y = 48, K=8;
 
-		int h = 28, g =73; 
-
-		int[] x = {2,3,4,5,6,7,8,9,10,11,12,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11}; 
-		int[] y = {0,0,0,0,0,0,0,0, 0, 0, 0,149,149,149,149,149,149,149,149,149,149}; //異�뎄 ��낫瑜����
+		int[] x = { 1, 2, 3, 4, 1, 2, 3, 4}; 
+		int[] y = { 0, 0, 0, 0,47,47,47,47}; 
 
 		int[][][] outs = new int[K][][];
 
@@ -59,7 +70,7 @@ public class MapPath {
 			outs[k] = map;
 		}
 
-		int[][] complete = new int[X][Y];
+		complete = new int[X][Y];
 		for(int n=0;n<X;n++)
 			for(int m=0;m<Y;m++){
 				complete[n][m]=outs[0][n][m];
@@ -80,29 +91,45 @@ public class MapPath {
 		yy = new int[X*Y];
 
 		a = 0;
+	}
+	public void ShortestPath(int ax,int ay){
+		counter++;
+		if (counter%20000 == 0) {
 
-		while (complete[h][g]!=EN)
-		{
-			if((h+1<X)&&(complete[h+1][g] < complete[h][g])&&complete[h+1][g]!=X*Y) {   
-				h=h+1;
-				a++;
-			}
-			else if((h-1>=0)&&(complete[h-1][g] < complete[h][g])&&complete[h-1][g]!=X*Y){
-				h=h-1;
-				a++;
-			}
-			else if((g+1<Y)&&(complete[h][g+1] < complete[h][g])&&complete[h][g+1]!=X*Y){
-				g=g+1;
-				a++;
-			}
-			else if(g-1>=0&&complete[h][g-1]!=X*Y){
-				g=g-1;
-				a++;
-			}
+			int h = ax, g =ay; 
 
-			xx[a]=h;
-			yy[a]=g;
+			while (complete[h][g]!=EN)
+			{
+				int tmp = complete[h][g];
+				if((h+1<X)&&(complete[h+1][g] < tmp)&&complete[h+1][g]!=X*Y) {   
+					h=h+1;
+					a++;
 
+					xx[a]=h;
+					yy[a]=g;
+				}
+				else if((h-1>=0)&&(complete[h-1][g] < tmp)&&complete[h-1][g]!=X*Y){
+					h=h-1;
+					a++;
+
+					xx[a]=h;
+					yy[a]=g;
+				}
+				else if((g+1<Y)&&(complete[h][g+1] < tmp)&&complete[h][g+1]!=X*Y){
+					g=g+1;
+					a++;
+
+					xx[a]=h;
+					yy[a]=g;
+				}
+				else if(g-1>=0&&complete[h][g-1]!=X*Y){
+					g=g-1;
+					a++;
+
+					xx[a]=h;
+					yy[a]=g;
+				}
+			}
 		}
 	}
 }

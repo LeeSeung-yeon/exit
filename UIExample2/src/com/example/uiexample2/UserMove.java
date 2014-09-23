@@ -34,7 +34,7 @@ public class UserMove extends Activity {
 		setContentView(new MapMove(this, null));
 	}
 
-
+/*
 	class UserView extends View {
 		Bitmap user;				// 캐릭터의 비트맵 이미지
     	
@@ -88,5 +88,5 @@ public class UserMove extends Activity {
 				Timer.sendEmptyMessageDelayed(0, 10);	//10/1000초마다 실행
 			}
 		};
-    }
+    }*/
 }

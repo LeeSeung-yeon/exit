@@ -15,7 +15,6 @@ public class MainActivity extends Activity implements OnClickListener {
 	ImageButton goMap;//요
 	ImageButton goHow;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -28,7 +27,6 @@ public class MainActivity extends Activity implements OnClickListener {
         goHow.setOnClickListener(this);
     }
 
-	@Override
 	public void onClick(View v) {
 		int id = v.getId();
 		

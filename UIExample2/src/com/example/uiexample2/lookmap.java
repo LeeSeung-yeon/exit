@@ -125,7 +125,7 @@ public class lookmap extends Activity{
 				spot();
 				move.userX=getPositionX()*10;
 				move.userY=getPositionY()*10;
-				Toast.makeText(getBaseContext(), "x: "+move.userX+"y: "+move.userY, Toast.LENGTH_SHORT).show();
+				//Toast.makeText(getBaseContext(), "x: "+move.userX+"y: "+move.userY, Toast.LENGTH_SHORT).show();
 			}
 		};
 
