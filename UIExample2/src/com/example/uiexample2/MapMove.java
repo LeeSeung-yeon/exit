@@ -219,7 +219,6 @@ public class MapMove extends SurfaceView implements Callback {
 				try {
 					synchronized (mHolder) {					// 동기화 유지
 						//ScrollViewport();						// 배경화면 스크롤
-
 						src.set(x1, y1, x1+width, y1+height);	// Viewport 설정
 
 						canvas.drawBitmap(pink, src, dst, null);	// 배경화면 그리기
